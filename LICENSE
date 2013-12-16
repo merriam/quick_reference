@@ -1,8 +1,7 @@
-The license is a bit confusing.
+The css and generated HTML files are under Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International License.   This is to respect
+the Richard Gruet Python Quick Reference Guide, at
+http://rgruet.free.fr/PQR27/PQR2.7.html/, from which the CSS and JavaScript style switcher
+is based.
 
-The intent is to make the Python code under the MIT (attribution) license.
-
-The css sheets and JavaScript come from RGruet's guide and are under the
-Creative Commons NC/Attribution/Share as seen in the html files.
-
-The html files are therefore under Creative Commons while the generator is MIT.
+The Python Code is under an MIT attribution license, which is copied into each file.

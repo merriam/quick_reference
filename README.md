@@ -14,3 +14,9 @@ FileList
 * css/ -- A directory of CSS pages copied from RGruet's guide
 
 Run 'python3 quick_docker.py' to get HTML output to the terminal.
+
+Dependencies
+------------
+
+Python3
+Markdown (https://pypi.python.org/pypi/Markdown)

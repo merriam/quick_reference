@@ -1,0 +1,8 @@
+The license is a bit confusing.
+
+The intent is to make the Python code under the MIT (attribution) license.
+
+The css sheets and JavaScript come from RGruet's guide and are under the
+Creative Commons NC/Attribution/Share as seen in the html files.
+
+The html files are therefore under Creative Commons while the generator is MIT.

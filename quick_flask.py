@@ -79,3 +79,5 @@ def vagrant_commands():
     # vagrant file comments
     return ""
 
+if __name__ == "__main__":
+    flask_main()

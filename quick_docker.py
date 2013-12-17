@@ -337,9 +337,9 @@ def front_matter():
         link("http://blog.docker.io/2013/11/docker-0-7-docker-now-runs-on-any-"
              "linux-distribution/", "What's new?")))
     # TODO:  Add spam proofing here.
-    p.append('<b>Please</b> report inaccuracies, oversights, and bugs to '
-             '<a href="emailto:charles.merriam@gmail.com">Charles Merriam</a>, putting '
-             '"Docker Guide" in the title.')
+    p.append('<b>Please</b> report inaccuracies, oversights, and bugs to the ' +
+             link("https://github.com/merriam/quick_reference/issues",
+                  "GitHub merriam/quick_reference repository"))
     p.append('<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">'
              '<img alt="Creative Commons License" style="border-width:0" '
              'src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />'

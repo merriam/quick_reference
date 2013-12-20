@@ -64,17 +64,17 @@ def docker_useful_links():
         ])
     chef = links_line("Chef configuration management by OpsCode", [
         ("http://www.getchef.com/chef/", "Overview"),
-        ("", "Documentation"),
+        ("http://docs.opscode.com", "Documentation"),
         ("https://github.com/opscode/chef", "GitHub Repository"),
-        ("", "Stack Overflow"),
-        ("", "License")
+        ("http://stackoverflow.com/questions/tagged/chef", "Stack Overflow"),
+        ("https://github.com/opscode/chef/blob/master/LICENSE", "License")
         ])
     puppet = links_line("Puppet configuration management", [
-        ("", "Overview"),
-        ("", "Documentation"),
-        ("", "GitHub Repository"),
-        ("", "Stack Overflow"),
-        ("", "License")])
+        ("http://puppetlabs.com", "Overview"),
+        ("http://docs.puppetlabs.com", "Documentation"),
+        ("https://github.com/puppetlabs/puppet", "GitHub Repository"),
+        ("http://stackoverflow.com/questions/tagged/puppet", "Stack Overflow"),
+        ("https://github.com/puppetlabs/puppet/blob/master/LICENSE", "License")])
     return link_section("Useful Links", (docker, golang, virtbox, vagrant, chef, puppet))
 
 def docker_glossary():

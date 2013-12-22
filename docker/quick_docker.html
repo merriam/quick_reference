@@ -146,12 +146,12 @@ Docker Commands
 <td><div class="subheader">&nbsp;</div>
 <td><div class="subheader">&nbsp;</div>
 <tr>
-<td><strong>import</strong> <code>-</code> <strong>|</strong> <em>url</em> <em>[</em>REPOSITORY<em>[</em>:TAG<em>]</em><em>]</em>
-<td>Import tar file of filesystem into new <strong>image</strong>. Source can be <code>-</code> for stdin, like <code>docker import - &lt; a6ef_files.tar</code>.  Alternately, source can be an <em>http</em> or <em>https</em> URL.  Also, the optional <em>REPOSITORY</em> or <em>REPOSITORY:TAG</em> will <code>docker tag</code> the new image, like <code>docker import server.com/files.tar charlesmerriam/dwarf:in_progress</code>
+<td><strong>import</strong> <code>-</code> <strong>|</strong> <em>URL</em> <em>[</em> <em>REPOSITORY</em><em>[</em> <em>:TAG</em> <em>]</em> <em>]</em>
+<td>Import tar file of filesystem into new <strong>image</strong>. Source can be <code>-</code> for <em>STDIN</em> as in <code>docker import - &lt; a6ef_files.tar</code>. Alternately, source can be an <em>HTTP</em> or <em>HTTPS</em> <em>URL</em>.  Also, the optional <em>REPOSITORY</em> or <em>REPOSITORY:TAG</em>will <code>docker tag</code> the new image, like <code>docker import server.com/files.tar charlesmerriam/dwarf:in_progress</code>.
 <td>
 <tr>
 <td><strong>export</strong> <em>CONTAINER</em>
-<td>Export <strong>container</strong> filesystem as tar file to <em>stdout</em>.  Use like <code>docker export a6e5 &gt; a6e5_files.tar</code>
+<td>Export <em>CONTAINER</em> filesystem as tar file to <em>STDOUT</em>.  Use like <code>docker export a6e5 &gt; a6e5_files.tar</code>.
 <td>(2)
 <tr>
 <td><strong>load</strong> <em>SOURCE</em>

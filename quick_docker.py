@@ -170,15 +170,33 @@ def subheader(name, length=3):
 
 def docker_commands():
     # c = container, r = repository or image set, R = registry, i = image, l = local system
-    exp = ("**export** *CONTAINER*",
-           "Export **container** filesystem as tar file to *stdout*.  Use like "
-           "`docker export a6e5 > a6e5_files.tar`", "(2)")
-    imp = ("**import** `-` **|** *url* *[*REPOSITORY*[*:TAG*]**]*",
-           "Import tar file of filesystem into new **image**. "
-            "Source can be `-` for stdin, like `docker import - < a6ef_files.tar`. "
-            " Alternately, source can be an *http* or *https* URL.  Also, the "
-            "optional *REPOSITORY* or *REPOSITORY:TAG* will `docker tag` the new image, like "
-            "`docker import server.com/files.tar charlesmerriam/dwarf:in_progress`", "")
+    cmd = lambda name, parameters: "**{}** {}".format(name, parameters)
+    typename = lambda the_type: "*{}*".format(the_type.upper())
+    j = lambda *str_list: "".join(str_list)
+    choice = lambda cond1, cond2: "{} **|** {}".format(cond1, cond2)
+    optional = lambda item: "*[* {} *]*".format(item)
+    run = lambda item: "`{}`".format(item)
+
+    repo = typename("repository")
+    reptag = j(repo, optional(typename(":tag")))
+    container = typename("container")
+    stdout = typename("stdout")
+    stdin = typename("stdin")
+    url = typename("url")
+    dash = "`-`"
+
+    exp = ( cmd("export",container),
+            j("Export ", container, " filesystem as tar file to ", stdout, ".  Use like ",
+            run("docker export a6e5 > a6e5_files.tar"), "."), "(2)")
+
+    imp = ( cmd("import", choice(dash, j(url, " ", optional(reptag)))),
+            j("Import tar file of filesystem into new **image**. ",
+            "Source can be ", dash, " for ", stdin, " as in ",
+            run("docker import - < a6ef_files.tar"), ". ",
+            "Alternately, source can be an ", typename("http"), " or ", typename("https"), " ",
+            url, ".  Also, the optional ", repo, " or ", typename("repository:tag"),
+            "will ", run("docker tag"), " the new image, like ",
+            run("docker import server.com/files.tar charlesmerriam/dwarf:in_progress"), "."), "")
     cp = ("**cp** *CONTAINER*:*path* *path*",
           "Recursively copy a file or directory out of a **container** filesystem to the local "
           "(host) filesystem.  So, `docker cp a6e5:/var/log .` would copy the directory tree "

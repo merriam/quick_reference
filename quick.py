@@ -32,12 +32,14 @@ The clients are expected to initimate with this code.
 from markdown import markdown
 
 def mark(s):
+    """ return markdown of string, less enclosing paragraph marks """
     marked = markdown(s)
     if marked[:3] == "<p>" and marked[-4:] == "</p>":
         marked = marked[3:-4]
     return marked
 
 def dec_html_trace(func):
+    """ decorator to put trace info into HTML for debugging """
     def trace_copy(*args, **kwargs):
         """ decorator to trace calls to html functions """
         if args and kwargs:

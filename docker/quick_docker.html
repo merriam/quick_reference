@@ -147,7 +147,7 @@ Docker Commands
 <td><div class="subheader">&nbsp;</div>
 <tr>
 <td><strong>import</strong> <code>-</code> <strong>|</strong> <em>URL</em> <em>[</em> <em>REPOSITORY</em><em>[</em> <em>:TAG</em> <em>]</em> <em>]</em>
-<td>Import tar file of filesystem into new <strong>image</strong>. Source can be <code>-</code> for <em>STDIN</em> as in <code>docker import - &lt; a6ef_files.tar</code>. Alternately, source can be an <em>HTTP</em> or <em>HTTPS</em> <em>URL</em>.  Also, the optional <em>REPOSITORY</em> or <em>REPOSITORY:TAG</em>will <code>docker tag</code> the new image, like <code>docker import server.com/files.tar charlesmerriam/dwarf:in_progress</code>.
+<td>Import tar file of filesystem into new <strong>image</strong>. Source can be <code>-</code> for <em>STDIN</em> as in <code>docker import - &lt; a6ef_files.tar</code>. Alternately, source can be an <em>HTTP</em> or <em>HTTPS</em> <em>URL</em>.  Also, the optional <em>REPOSITORY</em> or <em>REPOSITORY:TAG</em> will <code>docker tag</code> the new image, like <code>docker import server.com/files.tar charlesmerriam/dwarf:in_progress</code>.
 <td>
 <tr>
 <td><strong>export</strong> <em>CONTAINER</em>
@@ -155,11 +155,11 @@ Docker Commands
 <td>(2)
 <tr>
 <td><strong>load</strong> <em>SOURCE</em>
-<td>Load an image from a tar archive
+<td>Load an image from a <em>tar archive</em>
 <td>
 <tr>
 <td><strong>save</strong> <em>IMAGE</em>
-<td>Save an image to a tar archive streamed to <em>stdout</em>. Use like <code>docker save e71d &gt; e71d.tar</code>
+<td>Save an image to a <em>tar archive</em> streamed to <em>stdout</em>. Use like <code>docker save e71d &gt; e71d.tar</code>
 <td>
 <tr>
 <td><strong>diff</strong> <em>CONTAINER</em>
@@ -311,7 +311,7 @@ Docker Commands
 <br>
 <ul>
 <li>(1) The <code>docker diff</code> command lists <em>aufs</em> internal files.  These files are in the root directory and start with <code>.wh..wh.</code>.</li>
-<li>(2) Use <code>docker export</code> to copy an entire filesystem; current limitations return <code>Killed</code> otherwise.</li>
+<li>(2) Use <code>docker export</code> to copy an entire filesystem; current implmentations may store entire copied set in memory.</li>
 <li>(3) Current limitations cause <code>docker image</code> to ignore the <code>*IMAGE*</code> and <code>-q</code> flags when used with <code>-tree</code> or <code>-viz</code>.</li>
 <li>(4) You can display graphviz format at <a target="_blank" href="http://graphviz-dev.appspot.com">http://graphviz-dev.appspot.com</a> or run locally like <code>docker images -viz | dot -Tpng -o tree.png</code>.</li>
 <li>(5) Your login is stored in ~/.dockercfg.  Remove it to logout.</li>

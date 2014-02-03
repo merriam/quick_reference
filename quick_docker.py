@@ -24,7 +24,6 @@ from markdown import markdown
 from quick import *   # yes, it is intimate with this code
 
 
-
 def docker_useful_links():
     docker = links_line("Docker Linux container runtime", [
         ("https://www.docker.io", "Overview"),
@@ -79,6 +78,23 @@ def docker_useful_links():
 
 def docker_glossary():
     """ returns a glossary for docker """
+    def item(name, description):
+        return "name"
+
+    general_items = [
+        ]
+
+    specific_items = [
+        item("Tarred Repository",
+             "A file format created by `docker save` and used by `docker load`.   This file "
+             "archives an image, including its tags, history, and file system layers.   This"
+             " example saves, deletes, and the loads an image:  "
+             "`docker save f1f1 > f1f1.backup; docker rmi f1f1; docker load < f1f1.backup`.  "
+             "The file is actually a Unix *tar* "
+             "file format containing *JSON* data and the aufs layers to the file system."),
+        ]
+
+
     # docker
     # lxc
     # union file system -> aufs
@@ -87,8 +103,8 @@ def docker_glossary():
     # vm (xen, oracle, etc)
     # image, container, image repository
     # dsl
-    # """ All images are made up of a set of cumulative layers.
-    # A container is a process in a box.  The box, an image,  has a filesystem, system libraries, a network stack but no running process."""
+    #  All images are made up of a set of cumulative layers.
+    # A container is a process in a box.  The box, an image,  has a filesystem, system libraries, a network stack but no running process
 
     return ""
 
@@ -104,64 +120,8 @@ def check_both(list1, list2):
     if diff:
         print("Difference = ", diff)
 
-
-def old_docker_commands():
-    """ return command line options with dockerfile equivalents """
-    cmds = {
-        "attach" : "Attach to a running container",
-        "build" : "Build a container from a Dockerfile",
-        "commit" : "Create a new image from a container's changes",
-        "cp" : "Copy files/folders from the containers filesystem to the host path",
-        "diff" : "Inspect changes on a container's filesystem",
-        "events" : "Get real time events from the server",
-        "export" : "Stream the contents of a container as a tar archive",
-        "history" : "Show the history of an image",
-        "images" : "List images",
-        "import" : "Create a new filesystem image from the contents of a tarball",
-        "info" : "Display system-wide information",
-        "insert" : "Insert a file in an image",
-        "inspect" : "Return low-level information on a container",
-        "kill" : "Kill a running container",
-        "load" : "Load image from a tar archive",
-        "login" : "Register or Login to the docker registry server",
-        "logs" : "Fetch the logs of a container",
-        "port" : "Lookup the public-facing port which is NAT-ed to PRIVATE_PORT",
-        "top" : "Lookup the running processes of a container",
-        "ps" : "List containers",
-        "pull" : "Pull an image or a repository from the docker registry server",
-        "push" : "Push an image or a repository to the docker registry server",
-        "restart" : "Restart a running container",
-        "rm" : "Remove one or more containers",
-        "rmi" : "Remove one or more images",
-        "run" : "Run a command in a new container",
-        "save" : "Save an image to a tar archive",
-        "search" : "Search for an image in the docker index",
-        "start" : "Start a stopped container",
-        "stop" : "Stop a running container",
-        "tag" : "Tag an image into a repository",
-        "version" : "Show the docker version information",
-        "wait" : "Block until a container stops, then print its exit code"
-        }
-
-    groups = { 'files' : ['cp', 'diff', 'insert', 'export', 'import', 'load', 'save'],
-               'info' : ['events', 'history', 'images', 'info', 'inspect', 'logs', 'top', 'ps', 'version', 'port'],
-               'image' : ['commit', 'restart', 'rmi', 'run', 'start', 'stop', 'tag', 'wait'],
-               'container' : ['attach', 'build', 'kill', 'rm'],
-               'repos' : ['login', 'push', 'pull', 'search'] }
-
-    check_both(cmds, groups)
-
-    p = ["Docker Commands"]
-
-    for name in sorted(groups.keys()):
-        bodies = []
-        for cmd in groups[name]:
-            bodies.append([cmd, cmds[cmd]])
-        p.append(table(name, name, [], bodies))
-
-    return "\n".join(p)
-
 def subheader(name, length=3):
+    """ return subheader inside a table """
     toc_add(name, subheading=True)
     p = [ anchor(name) + '<div class="subheader">{}</div>'.format(name) ]
     for _ in range(1, length):
@@ -195,7 +155,7 @@ def docker_commands():
             run("docker import - < a6ef_files.tar"), ". ",
             "Alternately, source can be an ", typename("http"), " or ", typename("https"), " ",
             url, ".  Also, the optional ", repo, " or ", typename("repository:tag"),
-            "will ", run("docker tag"), " the new image, like ",
+            " will ", run("docker tag"), " the new image, like ",
             run("docker import server.com/files.tar charlesmerriam/dwarf:in_progress"), "."), "")
     cp = ("**cp** *CONTAINER*:*path* *path*",
           "Recursively copy a file or directory out of a **container** filesystem to the local "
@@ -211,8 +171,8 @@ def docker_commands():
     insert = ("**insert** *IMAGE* *URL* *PATH*",
               "Insert a file from URL into the IMAGE at PATH, creating a new image. "
               "Returns the new image ID.  It also creates a new container as a side effect.","")
-    load = ("**load** *SOURCE*", "Load an image from a tar archive", "")
-    save = ("**save** *IMAGE*", "Save an image to a tar archive streamed to *stdout*. "
+    load = ("**load** *SOURCE*", "Load an image from a *tar archive*", "")
+    save = ("**save** *IMAGE*", "Save an image to a *tar archive* streamed to *stdout*. "
             "Use like `docker save e71d > e71d.tar`", "")
 
     events = ('**events** [-since="*timestamp*"]', "Get real time events from the server, "
@@ -307,7 +267,7 @@ def docker_commands():
     notes = markdown("* (1) The `docker diff` command lists *aufs* internal files.  These "
                      "files are in the root directory and start with `.wh..wh.`.\n"
                      "* (2) Use `docker export` to copy an entire filesystem; current "
-                     "limitations return `Killed` otherwise.\n"
+                     "implmentations may store entire copied set in memory.\n"
                      "* (3) Current limitations cause `docker image` to ignore the "
                      "`*IMAGE*` and `-q` flags when used with `-tree` or `-viz`.\n"
                      "* (4) You can display graphviz format at "
